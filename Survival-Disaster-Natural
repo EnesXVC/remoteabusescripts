@@ -135,9 +135,16 @@ Tab:AddButton({
         end
     end
 })
-Tab:AddParagraph("The names of all the maps are","ReplicatedStorage < EventsFolder < SetMapFolder")
+local Section = Tab:AddSection({
+	Name = ""
+})
 
-
+local Section = Tab:AddSection({
+	Name = "The names of all the maps are"
+})
+local Section = Tab:AddSection({
+	Name = "ReplicatedStorage < EventsFolder < SetMapFolder"
+})
 local Section = Tab:AddSection({
 	Name = ""
 })
