@@ -1,0 +1,184 @@
+--This script does not need to be obfuscated.
+
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/Ne470NUV"))()
+local Window = OrionLib:MakeWindow({Name = "remoteabuse", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+Tab:AddParagraph("warning⚠️","While one process is running, other processes are not running.")
+local Section = Tab:AddSection({
+	Name = ""
+})
+local Section = Tab:AddSection({
+	Name = "Add Disaster"
+})
+
+local repeatCount = 1 
+
+Tab:AddTextbox({
+	Name = "Textbox",
+	Default = "",
+	TextDisappear = false,
+	Callback = function(Value)
+		local number = tonumber(Value)
+		if number and number > 0 then
+			repeatCount = number 
+		end
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Start",
+	Callback = function()
+		for i = 1, repeatCount do
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddDisaster"):FireServer()
+		end
+	end
+})
+local Section = Tab:AddSection({
+	Name = ""
+})
+local Section = Tab:AddSection({
+	Name = "Remove Disaster (can be negative)"
+})
+
+local repeatCount = 1 
+
+Tab:AddTextbox({
+	Name = "Textbox",
+	Default = "",
+	TextDisappear = false,
+	Callback = function(Value)
+		local number = tonumber(Value)
+		if number and number > 0 then
+			repeatCount = number 
+		end
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Start",
+	Callback = function()
+		for i = 1, repeatCount do
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoveDisaster"):FireServer()
+		end
+	end
+})
+local Section = Tab:AddSection({
+	Name = ""
+})
+local Section = Tab:AddSection({
+	Name = "Select Map & Dropdown"
+})
+
+local SetMapFolder = game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SetMap")
+local remoteList = {}
+local selectedEvent = nil
+
+for _, child in pairs(SetMapFolder:GetChildren()) do
+	if child:IsA("RemoteEvent") then
+		table.insert(remoteList, child.Name)
+	end
+end
+
+Tab:AddDropdown({
+	Name = "Select Map",
+	Default = remoteList[1] or "None",
+	Options = remoteList,
+	Callback = function(Value)
+		selectedEvent = Value
+	end
+})
+
+Tab:AddButton({
+	Name = "load map",
+	Callback = function()
+		if selectedEvent then
+			SetMapFolder:FindFirstChild(selectedEvent):FireServer()
+		end
+	end
+})
+local Section = Tab:AddSection({
+	Name = ""
+})
+local Section = Tab:AddSection({
+    Name = "Select Map & TextBox (Use Dex)"
+})
+Tab:AddButton({
+	Name = "Dex",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+  	end    
+})
+local SetMapFolder = game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SetMap")
+local selectedEvent = nil
+
+local MapTextBox = Tab:AddTextbox({
+    Name = "Enter Map Name",
+    Default = "",
+    TextDisappear = false, 
+    Callback = function(Value)
+        selectedEvent = Value
+    end
+})
+
+Tab:AddButton({
+    Name = "Load Map",
+    Callback = function()
+        if selectedEvent and SetMapFolder:FindFirstChild(selectedEvent) then
+            SetMapFolder:FindFirstChild(selectedEvent):FireServer()
+        else
+            warn("Map not found!")
+        end
+    end
+})
+Tab:AddParagraph("The names of all the maps are","ReplicatedStorage < EventsFolder < SetMapFolder")
+
+
+local Section = Tab:AddSection({
+	Name = ""
+})
+
+local Section = Tab:AddSection({
+	Name = "Dont Work load maps?"
+})
+
+Tab:AddButton({
+	Name = "Dont Work? Rejoin Server",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/5kcf62qz"))()
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local Section = Tab:AddSection({
+	Name = "Infinite Yield"
+})
+Tab:AddButton({
+	Name = "Infinite Yield",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  	end    
+})
+local Section = Tab:AddSection({
+	Name = "Dex"
+})
+Tab:AddButton({
+	Name = "Dex",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+  	end    
+})
+local Section = Tab:AddSection({
+	Name = ""
+})
+local Section = Tab:AddSection({
+	Name = "Made By IEnes"
+})
