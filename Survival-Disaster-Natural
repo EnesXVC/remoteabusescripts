@@ -8,7 +8,13 @@ local Tab = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
-Tab:AddParagraph("warning⚠️","While one process is running, other processes are not running.")
+local Section = Tab:AddSection({
+	Name = "warning⚠️"
+})
+local Section = Tab:AddSection({
+	Name = "While one process is running, other processes are not running.")
+})
+
 local Section = Tab:AddSection({
 	Name = ""
 })
