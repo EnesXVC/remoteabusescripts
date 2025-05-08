@@ -1,6 +1,6 @@
 --This script does not need to be obfuscated.
 
-local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/Ne470NUV"))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "remoteabuse", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local Tab = Window:MakeTab({
